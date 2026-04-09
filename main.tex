@@ -1,0 +1,60 @@
+\documentclass[12pt, oneside]{book}
+\usepackage{geometry}
+\geometry{margin=1.25in}
+
+% ─── Fonts ───────────────────────────────
+\usepackage{fontspec}
+\setmainfont{Padauk}
+
+% ─── Math ────────────────────────────────
+\usepackage{amsmath, amssymb, bm}
+
+% ─── Tables ──────────────────────────────
+\usepackage{booktabs, array}
+
+% ─── Misc ────────────────────────────────
+\usepackage{graphicx, microtype}
+\usepackage{hyperref}
+
+\title{Neural Networks with Maths\\[0.3em]
+       \large သင်္ချာအခြေခံများဖြင့်}
+\author{Light}
+\date{}
+
+\begin{document}
+\maketitle
+
+\chapter{သင်္ချာအခြေခံများ}
+
+Neural network ဆိုတာ သင်္ချာညီမျှခြင်းများတွေ ပြေလည်စေမယ့် အဖြေများရှာခြင်းဖြစ်တယ်။ \\
+အောက်က ဥပမာတွေကို ကြည့်ပါ။ ပေးထားချက် (Input) နှစ်ခု $x_1$, $x_2$ နှင့် အဖြေ (output) $y$ ရှိတယ်။ အဲတာကို ဥပမာ ၃ကြောင်းပေးထားတယ်။
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+$x_1$ & $x_2$ & $y$ \\
+\midrule
+1 & 2 & 5 \\
+3 & 3 & 9 \\
+2 & 1 & 4 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$$
+w_1 x_1 + w_2 x_2 = y
+$$
+ဒီပြဿနာရဲ့ ညီမျှခြင်းက ဒီလိုဆိုပါတော့။ အဲတာဆိုရင် အပေါ်က ဥပမာ ၃ခုလုံးကို မှန်စေမဲ့ $w_1$, $w_2$ တန်ဖိုးတွေကို ရှာကြမယ်။ \\
+အောက်မှာ မြင်သာအောင် ပြန်ရေးပေးထားတယ်။
+
+$$
+\begin{cases}
+w_1 (1) + w_2 (2) = 5 \\
+w_1 (3) + w_2 (3) = 9 \\
+w_1 (2) + w_2 (1) = 4
+\end{cases}
+$$
+
+\noindent ဒါဆိုရင် အခု ညီမျှခြင်း ၃ကြောင်းလုံးကို မှန်စေမဲ့ $w_1$, $w_2$ တန်ဖိုးတွေကို ခန့်မှန်းကြည့်။
+
+\end{document}

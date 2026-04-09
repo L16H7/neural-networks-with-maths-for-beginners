@@ -18,6 +18,11 @@
 
 \usepackage{tcolorbox}
 \usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{subcaption}
+\usepackage{xcolor}
 
 \definecolor{infocolor}{RGB}{219, 234, 254}
 \definecolor{infoborder}{RGB}{59, 130, 246}
@@ -33,6 +38,14 @@
   bottom=4pt,
   title={{\faYoutube \quad သိထားသင့်တာလေးများ}},
   coltitle=white
+}
+
+\newcommand{\redcircle}{%
+  \raisebox{-1pt}{\tikz\draw[red, line width=1.5pt] (0,0) circle (4pt);}%
+}
+\newcommand{\bluecross}{%
+  \raisebox{-1pt}{\tikz\draw[blue, line width=2pt] 
+    (-4pt,-4pt)--(4pt,4pt) (4pt,-4pt)--(-4pt,4pt);}%
 }
 
 \title{Neural Networks with Maths\\[0.3em]
@@ -112,4 +125,174 @@ X^{-1} &= \frac{1}{(1)(3) - (2)(1)} \begin{bmatrix} 3 & -2 \\ -1 & 1 \end{bmatri
 Linear Algebra ကို အခြေခံပြန်ကြည့်ချင်ရင် 3Blue1Brown ရဲ့ series ကို သွားကြည့်ဖို့ အကြံပေးပါတယ်။ \\
 \href{https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&si=QxWZPVdOINlLmugE}{3Blue1Brown --- Essence of Linear Algebra}
 \end{infobox}
+\section{Decision Boundary}
+Neural network တွေကို သင်ပေးတဲ့နေရာမှာ သင်မဲ့ train dataset နဲ့ ရလာတဲ့ model ကို စမ်းသပ်မဲ့ test dataset တို့လိုပါတယ်။
+အခုအောက်မှာ သင်ပေးမဲ့ train dataset ကိုကြည့်ရအောင်။
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+\hline
+$x_1$ & $x_2$ & Class \\
+\hline
+1.0 & 1.0 & \tikz\draw[red, line width=1.5pt] (0,0) circle (4pt); \\
+1.5 & 2.0 & \tikz\draw[red, line width=1.5pt] (0,0) circle (4pt); \\
+2.0 & 1.5 & \tikz\draw[red, line width=1.5pt] (0,0) circle (4pt); \\
+4.0 & 3.0 & \tikz\draw[blue, line width=2pt] (-4pt,-4pt) -- (4pt,4pt) (4pt,-4pt) -- (-4pt,4pt); \\
+4.5 & 4.0 & \tikz\draw[blue, line width=2pt] (-4pt,-4pt) -- (4pt,4pt) (4pt,-4pt) -- (-4pt,4pt); \\
+3.5 & 3.5 & \tikz\draw[blue, line width=2pt] (-4pt,-4pt) -- (4pt,4pt) (4pt,-4pt) -- (-4pt,4pt); \\
+\hline
+\end{tabular}
+\caption{Training Dataset}
+\end{table}
+
+\noindent ဆိုလိုတာက input $x_1$ နဲ့ $x_2$ ပေးရင် အဖြေက \redcircle\ ဒါမှမဟုတ် \bluecross\ ဖြစ်မယ်။ အဲတာကို အောက်ကအတိုင်း graph ဆွဲကြည့်လိုရတယ်။
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+        xlabel={$x_1$}, ylabel={$x_2$},
+        xmin=0, xmax=5, ymin=0, ymax=5,
+        grid=both,
+        grid style={line width=0.3pt, draw=gray!30},
+        minor tick num=1,
+        ]
+        % Big Circle - Class 0
+        \addplot[only marks, mark=o, mark size=4pt, 
+                line width=1.5pt, red] 
+        coordinates {(1,1)(1.5,2)(2,1.5)};
+
+        % Big X - Class 1
+        \addplot[only marks, mark=x, mark size=6pt, 
+                line width=2pt, blue] 
+        coordinates {(4,3)(4.5,4)(3.5,3.5)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\noindent အဲဒီ \redcircle\ နဲ့ \bluecross ကို ခွဲခြားပေးဖို့ မျဥ်းဆွဲကြည့်ရအောင်။ အောက်မှာ ဖြစ်နိုင်တဲ့ အဖြေတွေပေးထားတယ်။
+
+\begin{figure}[h]
+\centering
+
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={$x_1$}, ylabel={$x_2$},
+  xmin=0, xmax=5, ymin=0, ymax=5,
+  grid=both,
+  grid style={line width=0.3pt, draw=gray!30},
+  minor tick num=1,
+  width=8cm, height=8cm,
+]
+\addplot[only marks, mark=o, mark size=4pt,
+         line width=1.5pt, red]
+  coordinates {(1,1)(1.5,2)(2,1.5)};
+\addplot[only marks, mark=x, mark size=6pt,
+         line width=2pt, blue]
+  coordinates {(4,3)(4.5,4)(3.5,3.5)};
+% Decision boundary: x2 = x1
+\addplot[domain=0:5, samples=2, thick, black, dashed]
+  {-x + 5};
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={$x_1$}, ylabel={$x_2$},
+  xmin=0, xmax=5, ymin=0, ymax=5,
+  grid=both,
+  grid style={line width=0.3pt, draw=gray!30},
+  minor tick num=1,
+  width=8cm, height=8cm,
+]
+\addplot[only marks, mark=o, mark size=4pt,
+         line width=1.5pt, red]
+  coordinates {(1,1)(1.5,2)(2,1.5)};
+\addplot[only marks, mark=x, mark size=6pt,
+         line width=2pt, blue]
+  coordinates {(4,3)(4.5,4)(3.5,3.5)};
+% Decision boundary: x2 = -x1 + 5
+\addplot[domain=0:5, samples=2, thick, black, dashed]
+  {-10 * x + 30};
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}
+
+\vspace{1em}
+
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={$x_1$}, ylabel={$x_2$},
+  xmin=0, xmax=5, ymin=0, ymax=5,
+  grid=both,
+  grid style={line width=0.3pt, draw=gray!30},
+  minor tick num=1,
+  width=8cm, height=8cm,
+]
+\addplot[only marks, mark=o, mark size=4pt,
+         line width=1.5pt, red]
+  coordinates {(1,1)(1.5,2)(2,1.5)};
+\addplot[only marks, mark=x, mark size=6pt,
+         line width=2pt, blue]
+  coordinates {(4,3)(4.5,4)(3.5,3.5)};
+\addplot[domain=0:5, samples=2, thick, black, dashed]
+  {2.5};
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={$x_1$}, ylabel={$x_2$},
+  xmin=0, xmax=5, ymin=0, ymax=5,
+  grid=both,
+  grid style={line width=0.3pt, draw=gray!30},
+  minor tick num=1,
+  width=8cm, height=8cm,
+]
+\addplot[only marks, mark=o, mark size=4pt,
+         line width=1.5pt, red]
+  coordinates {(1,1)(1.5,2)(2,1.5)};
+\addplot[only marks, mark=x, mark size=6pt,
+         line width=2pt, blue]
+  coordinates {(4,3)(4.5,4)(3.5,3.5)};
+% Decision boundary: x2 = -x1 + 5
+\addplot[domain=0:5, samples=2, thick, black, dashed]
+  {2 * x - 3};
+\end{axis}
+\end{tikzpicture}
+\end{subfigure}
+
+\caption{မှန်ကန်သော အဖြေများ}
+\label{fig:decision_boundaries}
+\end{figure}
+\clearpage
+
+အပေါ်က ၄ခုလုံးက ပေးထားတဲ့ ဒေတာတွေအားလုံးကို မှန်အောင်လုပ်ပေးနိုင်တဲ့ function တွေ ဖြစ်ကြတယ်။ ကျွန်တော်တို့ machine learning မှာ ပြဿနာတွေကို ဖြေရှင်းတဲ့ function တွေကို model လို့ခေါ်ကြတယ်။ အဲတာကြောင့် ဒီနေရာက စပြီး model လို့ပဲ ခေါ်ကြရအောင်။
+အဲတာဆို အဲဒီ ၄ခုထဲမှာ ဘယ် model က အကောင်းဆုံးလဲ? \\
+
+\noindent ဘယ်ဟာမှာ မရွေးခင် စမ်းသပ်မဲ့ test dataset ကို ကြည့်ကြရအောင်။
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+\hline
+$x_1$ & $x_2$ & Class \\
+\hline
+2.5 & 4.0 & \tikz\draw[red, line width=1.5pt] (0,0) circle (4pt); \\
+3.0 & 0.5 & \tikz\draw[blue, line width=2pt] (-4pt,-4pt) -- (4pt,4pt) (4pt,-4pt) -- (-4pt,4pt); \\
+\hline
+\end{tabular}
+\caption{Test Dataset}
+\end{table}
+
 \end{document}

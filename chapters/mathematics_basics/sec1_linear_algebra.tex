@@ -1,0 +1,37 @@
+\section{Linear Algebra အခြေခံ}
+အခု ပုစ္ဆာကိုပဲ matrix တွေနဲ့ တွက်ကြည့်ရအောင်။ ညီမျှခြင်း $(1.1)$ နှင့် $(1.2)$ နှစ်ကြောင်းထဲကို ယူပြီး matrix form နဲ့ ရေးမယ်။
+$$
+\begin{bmatrix} 1 & 2 \\ 1 & 3 \end{bmatrix} \begin{bmatrix} w_1 \\ w_2 \end{bmatrix} = \begin{bmatrix} 5 \\ 7 \end{bmatrix}
+$$
+ဒါကို $X\mathbf{w} = \mathbf{y}$ လို့ ရေးနိုင်တယ်။ ဒီမှာ
+$$
+X = \begin{bmatrix} 1 & 2 \\ 1 & 3 \end{bmatrix}, \quad
+\mathbf{w} = \begin{bmatrix} w_1 \\ w_2 \end{bmatrix}, \quad
+\mathbf{y} = \begin{bmatrix} 5 \\ 7 \end{bmatrix}
+$$
+\noindent $\mathbf{w}$ ကို ရှာဖို့ နှစ်ဖက်လုံးကို $X^{-1}$ နဲ့ မြှောက်မယ်။
+$$
+X^{-1} X \mathbf{w} = X^{-1} \mathbf{y}
+$$
+\noindent $X^{-1}X = I$ ဖြစ်တယ်။ $I$ ကို Identity Matrix လို့ခေါ်တယ်။
+$$
+I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$$
+\noindent ဘယ် vector ကိုမဆို $I$ နဲ့ မြှောက်ရင် မပြောင်းဘဲ ဒီအတိုင်းနေတယ်။ ဆိုလိုသည်မှာ $I\mathbf{w} = \mathbf{w}$ ဖြစ်တယ်။ လွယ်လွယ်ပြောရင် ကျေသွားတယ်ပေါ့။ ဒါကြောင့်
+$$
+\mathbf{w} = X^{-1} \mathbf{y}
+$$
+\noindent ခုဆိုရင် $X^{-1}$ ကို ရှာဖို့သာ လိုတော့တယ်။ $2 \times 2$ matrix အတွက် inverse formula က
+$$
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+$$
+\begin{align*}
+X^{-1} &= \frac{1}{(1)(3) - (2)(1)} \begin{bmatrix} 3 & -2 \\ -1 & 1 \end{bmatrix} = \begin{bmatrix} 3 & -2 \\ -1 & 1 \end{bmatrix} \\[10pt]
+\mathbf{w} &= X^{-1}\mathbf{y} = \begin{bmatrix} 3 & -2 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 5 \\ 7 \end{bmatrix} = \begin{bmatrix} (3)(5) + (-2)(7) \\ (-1)(5) + (1)(7) \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}
+\end{align*}
+\noindent အဖြေက $w_1 = 1$, $w_2 = 2$
+
+\begin{infobox}
+Linear Algebra ကို အခြေခံပြန်ကြည့်ချင်ရင် 3Blue1Brown ရဲ့ series ကို သွားကြည့်ဖို့ အကြံပေးပါတယ်။ \\
+\href{https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&si=QxWZPVdOINlLmugE}{3Blue1Brown --- Essence of Linear Algebra}
+\end{infobox}

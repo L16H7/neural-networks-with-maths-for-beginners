@@ -1,0 +1,26 @@
+% ─── Page Layout ─────────────────────────
+\geometry{margin=1.25in}
+
+% ─── Fonts ───────────────────────────────
+\setmainfont{Padauk}[
+    SlantedFont = {*},
+    SlantedFeatures = {FakeSlant=0.12}
+]
+
+% ─── Colors ──────────────────────────────
+\definecolor{infocolor}{RGB}{219, 234, 254}
+\definecolor{infoborder}{RGB}{59, 130, 246}
+
+% ─── Boxes ───────────────────────────────
+\newtcolorbox{infobox}{
+  colback=infocolor,
+  colframe=infoborder,
+  arc=4pt,
+  boxrule=1pt,
+  left=6pt,
+  right=6pt,
+  top=4pt,
+  bottom=4pt,
+  title={{\faYoutube \quad သိထားသင့်တာလေးများ}},
+  coltitle=white
+}

@@ -1,10 +1,29 @@
 \chapter{Neural Network ဆိုတာဘာလဲ?}
 
-Neural network ဆိုတာ data ကိုသင်ယူပြီး အဖြေတွေထုတ်ပေးတဲ့ function ဖြစ်တယ်။
-အခု လက်ရှိခေတ်မှာ AI လို့ပြောလိုက်ရင် Language model တွေကိုပဲ အများစု ရည်ညွှန်းတာ ဖြစ်နေပြီ။
-Language model တွေဟာ neural network အမျိုးအစားတစ်ခုပဲ ဖြစ်တယ်။
-တကယ်တော့ AI တွေဆိုတာ neural network တစ်မျိုးထဲတော့ မဟုတ်ဘူး။
+Neural network ဆိုတာ သင်္ချာနည်းအရ ပြောမယ်ဆိုရင် data ကိုသင်ယူပြီး အဖြေတွေထုတ်ပေးတဲ့ function တစ်ခုပဲ ဖြစ်ပါတယ်။
+function ဆိုတဲ့ အတိုင်း တစ်ခုခုထည့်ပေးလိုက်ရင် တစ်ခုခုပြန်ထုတ်ပေးပါမယ်။ neural network function ထဲကိုထည့်ပေးမယ် data ကို input လို့
+ခေါ်ပြီး $x$ နဲ့ရေးလေ့ရှိပါတယ်။
+neural network ကို ပြန်ထုတ်ပေးမယ့် အဖြေကိုတော့ $y$ နဲ့ရေးပါတယ်။
 
-ဒီစာအုပ်မှာတော့ AI လို့ပြောလိုက်ရင် neural network လို့ပဲ သတ်မှတ်ကြပါစို့။
+$$
+f(x) = y
+$$
+သင်္ချာနည်းအရ neural network ကို ဒီလို အရိုးအရှင်းဆုံး မြင်ကြည့်လို့ရပါတယ်။
 
+အမြင်သာဆုံး ဥပမာပေးရရင် ခွေးပုံနဲ့ကြောင်ပုံနဲ့ ခွဲပြောပေးတဲ့ neural network ပေါ့။ neural network ထဲကို ဝင်မယ့် input $x$ ကို ခွေးတစ်ကောင်ရဲ့ပုံ၊ ဒါမှမဟုတ် ကြောင်တစ်ကောင်ရဲ့ပုံပေါ့။ ပြန်ထုတ်ပေးမယ့် အဖြေ $y$ က "ခွေး" သို့ "ကြောင်" ဆိုတဲ့ အဖြေပေါ့။
+
+$$
+\begin{aligned}
+f(\text{ခွေးပုံ}) &= \text{ခွေး} \\
+f(\text{ကြောင်ပုံ}) &= \text{ကြောင်}
+\end{aligned}
+$$
+
+အခေါ်အဝေါ်တွေ အရင်မိတ်ဆက်ကြရအောင်။ neural network လို့ နည်းပညာအရခေါ်ပေမယ့် တကယ်လက်တွေ့မှာတော့ model လို့ပဲခေါ်ပါတယ်။
+Machine learning model, deep learning model, AI model အစရှိသည်ဖြင့် တစ်မျိုးစီကွဲပြားကြပေမယ့် အားလုံးကို model လို့ခေါ်လဲမှန်ပါတယ်။
+
+AI ကို သင်ပေးတာကို training လုပ်တယ်လို့ခေါ်ပါတယ်။ AI ကို သင်ပေးတဲ့ data ကို train dataset လို့ခေါ်ပြီး AI ဘယ်လောက်တတ်သွားလဲဆိုတာ
+ပြန်ပြီး စစ်ဆေးမယ့် data ကို test dataset လို့သတ်မှတ်ကြပါတယ်။
+
+\input{chapters/what_is_neural_network/dataset.tex}
 \input{chapters/what_is_neural_network/decision_boundary}
